@@ -6,6 +6,7 @@ const app= express();
 const bodyParser= require("body-parser");
 const session= require("express-session");
 const cors = require("cors");
+const path= require("path");
 
 const normalizePort=(port, basePort=9000)=>(isNaN(port) || port <=0) ? basePort : parseInt(port);
 const  port=  normalizePort(process.env.PORT);
@@ -25,6 +26,8 @@ const sessionConfig={
 if (app.get("env")==="production") {
     app.set("trust proxy", 1);
     sessionConfig.cookie.secure=false;
+    const publicPath=path.join(__dirname, "public");
+    app.use(express.static(publicPath));
 }
 app.use(session(sessionConfig));
 //-----------------------------------------------
