@@ -17,13 +17,14 @@ class Login extends React.Component {
 
     constructor(props) {
         super(props);
+        const port=3000;
         this.state = {
             disabledButton: false,
             popUp: 'hidden',
             meetContState: 'hidden',
             loginFormState: 'visible',
             actionMsg: 'Logging in. Please wait...',
-            actionUrl: 'http://localhost:3000/process/login',
+            actionUrl: `http://localhost:${port}/process/login`,
             indexPath: '/dashboard',
             registerPath: '/register',
             phpSelf: '/',
@@ -91,13 +92,17 @@ class Login extends React.Component {
 
         this.setMessage(this.state.actionMsg)
         const postUrl = `${this.state.actionUrl}?user=${user}&password=${password}&rnd=${rnd}`;
-        //alert(postUrl);
 
-        fetch(postUrl)
+        fetch(postUrl, {
+            method:"get",
+            mode:"cors",
+            credentials:"include",
+
+        })
             //.then((response) => response.json())
             .then((response) => {
-                //return (response.json());
-                return (response.text());
+                return (response.json());
+                //return (response.text());
             })
             .then((responseJson) => {
                 console.log(responseJson);
@@ -127,7 +132,7 @@ class Login extends React.Component {
                             <h3>An amazing pet life </h3>
                             <p>Login to your account</p>
                             <div className="page-links">
-                                <Link id="link-to-login" to="/login">Login</Link>
+                                <Link className="active"  id="link-to-login" to="/login">Login</Link>
                                 <Link to="/register">Register</Link>
                                 <Link style={{display:"none", visibility:"hidden"}} id="link-to-dashboard" to="/dashboard">Dashboard</Link>
                             </div>

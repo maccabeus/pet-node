@@ -29,8 +29,8 @@ class Dashboard extends React.Component {
 
             indexPath: '/',
             defaultUserRole: 'admin',
-            subList: null,
-            channelList: [],
+            subList: [<div  style={{marginLeft:"50%"}} className='loader09'></div>],
+            channelList: [<div style={{marginLeft:"50%"}} className='loader09'></div>],
             styles: {
                 formControl: "form-control",
                 formButton: "form-button",
@@ -38,6 +38,9 @@ class Dashboard extends React.Component {
             },
             pageLoader: <div className='loader09'></div>,
         };
+
+        // check if user is logged in
+         this.loginValidate();
     }
 
     setPopUp = (state, wait = null) => {
@@ -84,7 +87,8 @@ class Dashboard extends React.Component {
                 const status = responseJson['status'];
                 const msg = responseJson['msg'];
                 const content = responseJson['content'];
-                let meetingCount = 0;
+
+                // filter to have just the channel user not
 
                 if (status == true) {
                     let curHtml = content.map((sub) => {
@@ -128,7 +132,7 @@ class Dashboard extends React.Component {
                 console.log(responseJson);
                 const status = responseJson['status'];
                 const msg = responseJson['msg'];
-                const content = responseJson['content'];
+                let content = responseJson['content'];
 
                 if (status == true) {
                     let curHtml = content.map((sub) => {
@@ -136,7 +140,7 @@ class Dashboard extends React.Component {
                         const list = <div id={sub['id']} key={sub['id']} className="dashboard-list-cont">
                             <div><span className="title">{sub['channel']}</span>
                                 <i className='dashboard-list-delete icon-040' onClick={() => {
-                                    this.subscribe(sub['id']);
+                                    this.subscribe(sub['id'], sub['channel']);
                                 }}>
                                 </i>
                             </div>
@@ -196,7 +200,6 @@ class Dashboard extends React.Component {
             method:"get",
             mode:"cors",
             credentials:"include",
-
         })
             .then((response) => response.json())
             .then((responseJson) => {
@@ -204,13 +207,14 @@ class Dashboard extends React.Component {
                 const status = responseJson['status'];
                 const msg = responseJson['status'];
                 if (status === false) {
-                   // this.takeToLogin();
+                   this.takeToLogin();
                 }
             });
     };
 
     takeToLogin=()=>{
         document.getElementById("link-to-login").submit();
+        document.location.href=this.state.indexPath;
     }
     deleteSub = (userId, channelId) => {
 
@@ -242,11 +246,11 @@ class Dashboard extends React.Component {
             });
     }
 
-    subscribe = (channelId) => {
+    subscribe = (channelId, channel) => {
         const rnd = Math.random();
-        PopUp.setMessage(this, <div className="alert alert-info">Subscribing, please wait...</div>);
+        PopUp.setMessage(this, <div className="alert alert-info">Subscribing to {channel}, please wait...</div>);
 
-        const postUrl = `${this.state.actionUrlSub}?channel-id=${channelId}&rnd=${rnd}`;
+        const postUrl = `${this.state.actionUrlSub}?channel-id=${channelId}&channel=${channel}&rnd=${rnd}`;
         //alert(postUrl);
         fetch(postUrl)
             //.then((response) => response.json())
@@ -322,8 +326,6 @@ class Dashboard extends React.Component {
         return (html);
     };
     componentWillMount= async ()=>{
-        // check if user is logged in
-        await this.loginValidate();
     }
 
     componentDidMount = () => {

@@ -135,7 +135,7 @@ class Register extends React.Component {
 
                         <div className="page-links">
                             <Link to="/login">Login</Link>
-                            <Link to="/register">Register</Link>
+                            <Link className="active"  to="/register">Register</Link>
                         </div>
 
                         <form id='login-form' method='post' action={this.state.indexPath} onSubmit={(e)=>{

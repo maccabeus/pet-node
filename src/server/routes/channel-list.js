@@ -14,7 +14,6 @@ module.exports= async (req, res, next, baseTable="channels")=>{
             const msg="Channels found";
             // switch _id for id
             record= Utils.copyRecordField(record);
-            MidoDb.closeDb();
             return res.send(Utils.buildResponse(true, msg,null,null, record ))
         })
     })
