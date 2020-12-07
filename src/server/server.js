@@ -26,8 +26,8 @@ const sessionConfig={
 if (app.get("env")==="production") {
     app.set("trust proxy", 1);
     sessionConfig.cookie.secure=false;
-    const publicPath=path.join(__dirname, "public");
-    app.use(express.static(publicPath));
+    const buildPath=path.join(__dirname, "build");
+    app.use(express.static(buildPath));
 }
 app.use(session(sessionConfig));
 //-----------------------------------------------
