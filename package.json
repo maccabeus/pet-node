@@ -21,13 +21,13 @@
   },
   "engines": {
     "node": "~12.18.3",
-    "npm" : "~6.16.6",
+    "npm" : "6.14.6",
     "yarn": "~1.22.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "mocha --timeout 50000",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

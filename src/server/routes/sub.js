@@ -18,6 +18,7 @@ module.exports = async (req, res, next, baseTable = "channel_subscription") => {
 
     if (!channel || channel === null || channel === undefined)
         return res.send(Utils.buildResponse(false, "Invalid channel selected"));
+    console.log("test here");
 
     // check if this user is already subscribe to channel
     MidoDb.init("mongodb")
