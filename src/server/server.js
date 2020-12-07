@@ -8,7 +8,12 @@ const session= require("express-session");
 const cors = require("cors");
 const path= require("path");
 
-const normalizePort=(port, basePort=9000)=>(isNaN(port) || port <=0) ? basePort : parseInt(port);
+const normalizePort=(port, basePort=9000)=> {
+    if (isNaN(port) || port <=0)
+        return basePort;
+    else
+        return parseInt(port);
+}
 const  port=  normalizePort(process.env.PORT);
 /* import route manager to handle routing */
 const routeManager= require("./routes/routeManager");
@@ -23,7 +28,7 @@ const sessionConfig={
     resave: false,
     saveUninitialized: true,
 }
-if (app.get("env")==="production") {
+if (process.env.NODE_ENV === "production") {
     app.set("trust proxy", 1);
     sessionConfig.cookie.secure=false;
     const buildPath=path.join(__dirname, "build");
