@@ -34,7 +34,8 @@ if (process.env.NODE_ENV === "production") {
     const buildPath=path.join("build");
     app.use(express.static(buildPath));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, buildPath, "index.html"));
+        //res.sendFile(path.resolve(__dirname, buildPath, "index.html"));
+        res.sendFile(path.resolve(buildPath, "index.html"));
     });
 }
 app.use(session(sessionConfig));
