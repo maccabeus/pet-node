@@ -41,7 +41,7 @@ app.use(cors({
 if (process.env.NODE_ENV === "production") {
     app.set("trust proxy", 1);
     sessionConfig.cookie.secure=false;
-    const buildPath=path.join(__dirname, "build");
+    const buildPath=path.join("build");
     app.use(express.static(buildPath));
 }
 
