@@ -50,7 +50,7 @@ app.use("/process",routeManager);
 
 // Call any pending react file 
 app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, buildPath, "index.html"));
+        res.sendFile(path.resolve(buildPath, "index.html"));
         //res.sendFile(path.resolve(buildPath, "index.html"));
     });
 
