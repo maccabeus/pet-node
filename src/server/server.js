@@ -38,12 +38,12 @@ app.use(cors({
     //origin: "http://localhost:3000"
 }));
 
-if (process.env.NODE_ENV === "production") {
+//if (process.env.NODE_ENV === "production") {
     app.set("trust proxy", 1);
     sessionConfig.cookie.secure=false;
     const buildPath=path.join("build");
     app.use(express.static(buildPath));
-}
+//}
 
 // api calls router
 app.use("/process",routeManager);
