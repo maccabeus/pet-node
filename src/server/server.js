@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
 app.use("/process",routeManager);
 
 // Call any pending react file 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
         res.sendFile(path.resolve(buildPath, "index.html"));
         //res.sendFile(path.resolve(buildPath, "index.html"));
     });
