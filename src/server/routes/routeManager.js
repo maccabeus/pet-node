@@ -17,12 +17,7 @@ const returnFunction=()=> {
 }
 
 routeManager.get("/", (req, res, next) => {
-    // do nothing
-});
-
-routeManager.get("/dashboard", (req, res, next) => {
-    // do nothing
-    res.send("dashboard here")
+    // do nothing on process index
 });
 
 routeManager.get(Utils.buildPath("login"), (req, res, next) => {

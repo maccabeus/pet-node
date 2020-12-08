@@ -43,10 +43,11 @@ app.use(session(sessionConfig));
 // set cross origin
 app.use(cors({
     credentials: false,
-    origin: "http://localhost:3000"
+    //origin: "http://localhost:3000"
     }));
 
-app.use("/", routeManager);
+// api calls router
+app.use("/process", routeManager);
 
 /* handle errors */
 app.on("error", (e)=>{

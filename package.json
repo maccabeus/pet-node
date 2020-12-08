@@ -28,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "mocha --timeout 50000",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "client" : "cd src && yarn start",
+    "server" : "cd src/server && nodemon server.js"
   },
   "eslintConfig": {
     "extends": [

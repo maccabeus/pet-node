@@ -24,7 +24,7 @@ class Login extends React.Component {
             meetContState: 'hidden',
             loginFormState: 'visible',
             actionMsg: 'Logging in. Please wait...',
-            actionUrl: `http://localhost:${port}/process/login`,
+            actionUrl: `/process/login`,
             indexPath: '/dashboard',
             registerPath: '/register',
             phpSelf: '/',

@@ -16,7 +16,7 @@ class Register extends React.Component {
             meetContState: 'hidden',
             loginFormState: 'visible',
             actionMsg: 'Creating account. Please wait...',
-            actionUrl: 'http://localhost:9000/process/register',
+            actionUrl: '/process/register',
             indexPath: '/login',
             phpSelf: '/register',
             styles: {
