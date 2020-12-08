@@ -29,8 +29,7 @@
     "build": "react-scripts build",
     "test": "mocha --timeout 50000",
     "eject": "react-scripts eject",
-    "client" : "cd src && yarn start",
-    "heroku-postbuild": "yarn && yarn run build",  
+    "client" : "cd src && yarn start", 
     "server" : "cd src/server && node server.js"
   },
   "eslintConfig": {
