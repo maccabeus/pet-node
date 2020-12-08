@@ -93,6 +93,8 @@ class Login extends React.Component {
         this.setMessage(this.state.actionMsg)
         const postUrl = `${this.state.actionUrl}?user=${user}&password=${password}&rnd=${rnd}`;
 
+        let text=null;
+
         fetch(postUrl, {
             method:"get",
             mode:"cors",
@@ -101,11 +103,12 @@ class Login extends React.Component {
         })
             //.then((response) => response.json())
             .then((response) => {
+               // text=(response.text());
                 return (response.json());
-                //return (response.text());
             })
             .then((responseJson) => {
                 console.log(responseJson);
+                console.log(text, "text");
                 const status = responseJson['status'];
                 const msg = responseJson['msg'];
                 if (status === true) {
