@@ -702,4 +702,10 @@ html, body {
         display:flex;
         flex-direction: column;
     }
+    .alert{
+    position:fixed;
+    left:5%;
+    width:90%;
+    top:5%;
+    }
 }

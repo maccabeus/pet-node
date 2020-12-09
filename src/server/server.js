@@ -40,19 +40,21 @@ app.use(cors({
     //origin: "http://localhost:3000"
 }));
 
-if (process.env.NODE_ENV === "production") {
+//if (process.env.NODE_ENV === "production") {
     app.set("trust proxy", 1);
     sessionConfig.cookie.secure=false;
     const buildPath=path.join("build");
     app.use(express.static(buildPath));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, buildPath, "index.html"));
-        //res.sendFile(path.resolve(buildPath, "index.html"));
-    });
-}
+//}
 
 // api calls router
-app.use("/process",routeManager)
+app.use("/process",routeManager);
+
+// Call any pending react file 
+app.get("*", (req, res) => {
+        res.sendFile(path.resolve(buildPath, "index.html"));
+        //res.sendFile(path.resolve(buildPath, "index.html"));
+    });
 
 /* handle errors */
 app.on("error", (e)=>{

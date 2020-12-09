@@ -29,7 +29,10 @@ describe("Route Manager Test group", ()=>{
         // this will be both unit and integration test
         const baseTable="test_channel_subscription";
         let result= await sub(req, res, next, baseTable);
-        expect(JSON.parse(result)).toHaveProperty(["status", "msg"]);
+        result=JSON.parse(result);
+        expect(result).to.have.own.property("status");
+        expect(result).to.have.own.property("msg");
+        expect(result.status).to.be.deep.equal(true);
         done();
 
     })
