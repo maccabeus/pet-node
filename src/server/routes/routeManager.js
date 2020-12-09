@@ -12,10 +12,6 @@ const subscriptionsList = require("./sub-list");
 const channelList = require("./channel-list");
 const LoginValidate = require("./login-validate");
 
-const returnFunction=()=> {
-    Utils.buildResponse(true, Utils.buildPath("logout"));
-}
-
 routeManager.get("/", (req, res, next) => {
     // do nothing on process index
 });
